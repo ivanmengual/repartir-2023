@@ -62,4 +62,24 @@ class GrupoTest {
 
         assertThat(grupo.estaFormado()).isFalse();
     }
+
+    @Test
+    void nombreContieneCaracterEspecial() {
+        Grupo grupo = new Grupo();
+
+        grupo.setMiembros(Arrays.asList("martin"));
+        grupo.setNombre("grupo ¡");
+
+        assertThat(grupo.getNombre() == "grupo ¡").isTrue();
+    }
+
+    @Test
+    void nombreSoloContieneCaracterEspecial() {
+        Grupo grupo = new Grupo();
+
+        grupo.setMiembros(Arrays.asList("martin"));
+        grupo.setNombre("{}¡-*");
+
+        assertThat(grupo.getNombre() == "{}¡-*").isTrue();
+    }
 }
