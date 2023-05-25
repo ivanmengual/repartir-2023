@@ -84,4 +84,69 @@ public class NombreQueLosIdentificaSteps extends CucumberSteps {
                 .contains("No se puede guardar");
     }
 
+    @Cuando("el usuario crea un grupo indicando el nombre con caracteres especiales {string}")
+    public void elUsuarioCreaUnGrupoDeNombreConCaracteresEspeciales(String nombre) {
+
+        nombreIndicado = nombre;
+
+        var wait = new WebDriverWait(driver, 2);
+        var crearGruposButton = wait.until(elementToBeClickable(By.id("crearGruposButton")));
+        crearGruposButton.click();
+
+        driver.findElement(By.id("nombreGrupoNuevoInput")).sendKeys(nombreIndicado);
+
+        var miembrosInput = driver.findElement(By.id("miembrosGrupoNuevoInput"));
+        miembrosInput.sendKeys("Victor");
+        miembrosInput.sendKeys(Keys.ENTER);
+        miembrosInput.sendKeys("Brenda");
+        miembrosInput.sendKeys(Keys.ENTER);
+
+        driver.findElement(By.id("guardarGrupoNuevoButton")).click();
+
+        wait.until(visibilityOfElementLocated(By.id("mensajesToast")));
+    }
+
+    @Entonces("debería visualizar dentro del listado el grupo creado con el nombre ingresado tal cual, sin mensaje de error")
+    public void deberiaVisualizarDentroDelListadoElGrupoConElNombreTalCualIncluyendoCaracteresEspeciales() {
+
+        //Verifico que exista la lista
+        var grupoTR = driver.findElements(By.cssSelector("app-grupos table tr"));
+        //assertThat(grupoTR).hasSizeGreaterThan(1);
+        //Verifico que el campo con el nombre del grupo sea igual al nombre escrito
+        var campoTDs = grupoTR.get(1).findElements(By.tagName("td"));
+        assertThat(campoTDs.get(1).getText()).isEqualTo("GrupoPrueba!!");
+    }
+
+    @Cuando("el usuario crea un grupo indicando el nombre con solo caracteres especiales {string}")
+    public void elUsuarioCreaUnGrupoDeNombreConSoloCaracteresEspeciales(String nombre) {
+
+        nombreIndicado = nombre;
+
+        var wait = new WebDriverWait(driver, 2);
+        var crearGruposButton = wait.until(elementToBeClickable(By.id("crearGruposButton")));
+        crearGruposButton.click();
+
+        driver.findElement(By.id("nombreGrupoNuevoInput")).sendKeys(nombreIndicado);
+
+        var miembrosInput = driver.findElement(By.id("miembrosGrupoNuevoInput"));
+        miembrosInput.sendKeys("Victor");
+        miembrosInput.sendKeys(Keys.ENTER);
+        miembrosInput.sendKeys("Brenda");
+        miembrosInput.sendKeys(Keys.ENTER);
+
+        driver.findElement(By.id("guardarGrupoNuevoButton")).click();
+
+        wait.until(visibilityOfElementLocated(By.id("mensajesToast")));
+    }
+
+    @Entonces("debería visualizar dentro del listado el grupo creado con el nombre ingresado tal cual, con solo los caracteres especiales")
+    public void deberiaVisualizarDentroDelListadoElGrupoConElNombreTalCualConSoloCarateresEpeciales() {
+
+        //Verifico que exista la lista
+        var grupoTR = driver.findElements(By.cssSelector("app-grupos table tr"));
+        //assertThat(grupoTR).hasSizeGreaterThan(1);
+        //Verifico que el campo con el nombre del grupo sea igual al nombre escrito
+        var campoTDs = grupoTR.get(1).findElements(By.tagName("td"));
+        assertThat(campoTDs.get(1).getText()).isEqualTo("{}¡-*");
+    }
 }
