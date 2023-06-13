@@ -8,6 +8,13 @@ Característica: Crear Grupo para repartir gastos
       Dado que el usuario inició Repartir
       Cuando el usuario crea un grupo indicando el nombre 'Regalo de navidad'
       Entonces debería visualizar dentro del listado el grupo con el nombre indicado
+      Dado que el usuario inició Repartir
+      Cuando el usuario crea un grupo indicando el nombre 'GrupoPrueba!!'
+      Entonces debería visualizar dentro del listado el grupo con el nombre indicado
+      Dado que el usuario inició Repartir
+      Cuando el usuario crea un grupo indicando el nombre '{}¡-*'
+      Entonces debería visualizar dentro del listado el grupo con el nombre indicado
+
 
     @pendiente
     Escenario: No puede crear un grupo sin nombre
@@ -36,14 +43,3 @@ Característica: Crear Grupo para repartir gastos
       Cuando el usuario crea un grupo
       Entonces debería visualiza dentro del listado el grupo creado con total '$  0,00'
 
-  Regla: Un grupo conformado puede admitir de nombre caracteres especiales
-
-    Escenario: Puede crear un grupo de nombre con caracteres especiales
-      Dado que el usuario inició Repartir
-      Cuando el usuario crea un grupo indicando el nombre con caracteres especiales "GrupoPrueba!!"
-      Entonces debería visualizar dentro del listado el grupo creado con el nombre ingresado tal cual, sin mensaje de error
-
-    Escenario: Puede crear un grupo de nombre con solo caracteres especiales
-      Dado que el usuario inició Repartir
-      Cuando el usuario crea un grupo indicando el nombre con solo caracteres especiales "{}¡-*"
-      Entonces debería visualizar dentro del listado el grupo creado con el nombre ingresado tal cual, con solo los caracteres especiales
