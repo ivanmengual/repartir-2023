@@ -8,9 +8,13 @@ Característica: Crear Grupo para repartir gastos
       Dado que el usuario inició Repartir
       Cuando el usuario crea un grupo indicando el nombre 'Regalo de navidad'
       Entonces debería visualizar dentro del listado el grupo con el nombre indicado
+
+    Escenario: Crea un grupo con nombre que contenga caracteres especiales
       Dado que el usuario inició Repartir
       Cuando el usuario crea un grupo indicando el nombre 'GrupoPrueba!!'
       Entonces debería visualizar dentro del listado el grupo con el nombre indicado
+      
+    Escenario: Crea un grupo con nombre formado por solo caracteres especiales
       Dado que el usuario inició Repartir
       Cuando el usuario crea un grupo indicando el nombre '{}¡-*'
       Entonces debería visualizar dentro del listado el grupo con el nombre indicado
